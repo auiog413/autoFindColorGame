@@ -10,7 +10,7 @@ import time
 BROWSER='firefox'
 GAME_URL='http://www.4399.com/flash/144484_2.htm'
 TM_THRESHOLD=10000
-TEMPLATE_BROWSER_ADDRESS_BAR='area-' + str(BROWSER) + '-address-bar.png'
+TEMPLATE_BROWSER_ADDRESS_BAR='templates/area-' + str(BROWSER) + '-address-bar.png'
 ############################
 # Configration End
 ############################
@@ -51,22 +51,23 @@ while (threshold > TM_THRESHOLD):
     (click_x, click_y, threshold) = templateMatching(TEMPLATE_BROWSER_ADDRESS_BAR)
 # type the game url using xdotool
 mouseMoveAndClick(click_x, click_y)
+time.sleep(1)
 os.system('xdotool type "' + str(GAME_URL) + '"')
 os.system('xdotool key Return')
 
 # detect location of play button of first screen and click it
-clickArea('btn-start-play.png', TM_THRESHOLD)
+clickArea('templates/btn-start-play.png', TM_THRESHOLD)
 
 # detect location of play button of second screen and click it
-(click_x, click_y, threshold) = clickArea('btn-play.png', TM_THRESHOLD)
+(click_x, click_y, threshold) = clickArea('templates/btn-play.png', TM_THRESHOLD)
 # close background music
-clickArea('btn-music.png', TM_THRESHOLD)
+clickArea('templates/btn-music.png', TM_THRESHOLD)
 
 pLeftTop = (int(click_x) - 209, int(click_y) - 249)
 pRightBottom = (int(click_x) + 140, int(click_y) + 100)
 time.sleep(1)
 
-grabRightBottom = templateMatching('area-social.png')
+grabRightBottom = templateMatching('templates/area-social.png')
 
 while True:
     img = ss.grab(bbox=(0,0,grabRightBottom[0],grabRightBottom[1]))
