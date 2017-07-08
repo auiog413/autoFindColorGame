@@ -3,7 +3,6 @@ import numpy as np
 import os
 import pyscreenshot as ss
 import time
-import sys
 
 ############################
 # Configration Start
